@@ -12,11 +12,10 @@ class Form extends Component {
         this.setState({
             todo: e.target.value // input field의 다음 바뀔 값
         });
-    }
+    };
     handleCreate = () => {
         const { todo } = this.state;
         const newTodo = {
-            id: this.id++,
             text: todo,
             checked: false
         };
@@ -51,4 +50,4 @@ class Form extends Component {
     }
 }
 
-export default  connect(null, { addTodo })(Form);
+export default connect(null, { addTodo })(Form);
