@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import TodoItem from './TodoItem';
+import { fetchAllTodos } from '../actions'
 
 class TodoItemList extends Component {
     /*
@@ -8,7 +11,13 @@ class TodoItemList extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         return this.props.todos !== nextProps.todos;
     }
-    
+    /*
+        props로 전달받은 action fetchAllTodos함수(ajax통신) 호출
+    */
+    componentDidMount() {
+        this.props.fetchAllTodos();
+    }
+
     render() {
         const { todos, myToggle, myRemove } = this.props;
         const todoList = todos.map(
@@ -30,4 +39,7 @@ class TodoItemList extends Component {
         );
     }
 }
-export default TodoItemList;
+export default connect(
+    (state) => ({ todos: state.todos }),
+    { fetchAllTodos } //{ fetchAllTodos: fetchAllTodos }
+)(TodoItemList);
