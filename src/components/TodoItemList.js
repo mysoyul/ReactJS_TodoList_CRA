@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 
 class TodoItemList extends Component {
+    /*
+        shouldComponentUpdate() 메서드가 false이면 render()가 호출되지 않는다.
+    */
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.todos !== nextProps.todos;
+    }
+    
     render() {
         const { todos, myToggle, myRemove } = this.props;
         const todoList = todos.map(
