@@ -6,7 +6,8 @@ export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 
-const apiUrl = 'http://localhost:4500/api/todos';
+const apiUrl = process.env.REACT_APP_APIURL
+//'http://localhost:4500/api/todos';
 
 export const toggleTodo = (todo) => {
     return (dispatch) => {
