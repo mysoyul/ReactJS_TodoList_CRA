@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './Form.css';
+import { connect } from 'react-redux';
 
+import './Form.css';
+import { addTodo } from '../actions';
 class Form extends Component {
     state = {
         todo: '',
@@ -12,15 +14,18 @@ class Form extends Component {
         });
     }
     handleCreate = () => {
-        const { todo, todos } = this.state;
+        const { todo } = this.state;
         const newTodo = {
             id: this.id++,
             text: todo,
             checked: false
         };
+        /*
+            props로 전달받은 action addTodo(ajax통신) 호출
+        */
+        this.props.addTodo(newTodo);
 
         this.setState({
-            todos: [...todos, newTodo],
             todo: '', // input 초기화
         });
     };
@@ -46,4 +51,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default  connect(null, { addTodo })(Form);
