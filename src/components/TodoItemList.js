@@ -18,6 +18,21 @@ class TodoItemList extends Component {
         this.props.fetchAllTodos();
     }
 
+    //이벤트 핸들러
+    handleToggle = (id) => {
+        const { todos } = this.state;
+        this.setState({
+            todos: todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo)
+        });
+    };
+
+    handleRemove = (id) => {
+        const { todos } = this.state;
+        this.setState({
+            todos: todos.filter(todo => todo.id !== id)
+        });
+    };
+
     render() {
         const { todos, myToggle, myRemove } = this.props;
         const todoList = todos.map(

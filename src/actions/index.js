@@ -8,7 +8,7 @@ export const TOGGLE_TODO = "TOGGLE_TODO";
 
 const apiUrl = 'http://localhost:4500/api/todos';
 
-export const toggleTodo = todo => {
+export const toggleTodo = (todo) => {
     return (dispatch) => {
         axios.patch(`${apiUrl}/${todo.id}`, todo)
             .then(res => {
