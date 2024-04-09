@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Form.css';
-import { addTodo } from '../actions';
+//import { addTodo } from '../actions';
+import { addTodo } from '../reducers/todosSlice'
 class Form extends Component {
     state = {
         todo: '',

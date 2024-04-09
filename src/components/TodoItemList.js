@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import TodoItem from './TodoItem';
-import { fetchAllTodos } from '../actions'
+//import { fetchAllTodos } from '../actions'
+import { fetchAllTodos } from '../reducers/todosSlice';
 
 class TodoItemList extends Component {
     /*

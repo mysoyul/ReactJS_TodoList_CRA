@@ -8,11 +8,13 @@ import reportWebVitals from './reportWebVitals';
 //import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { toDoReducer as reducer } from './reducers';
+//import { toDoReducer as reducer } from './reducers';
+import todoSlice from './reducers/todoSlice';
 
 //const store = createStore(toDoReducer, applyMiddleware(thunk));
 const store = configureStore({
-  reducer  //reducer: reducer, 
+  reducer: todoSlice
+  //reducer  //reducer: reducer, 
   //middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk)
 });
 

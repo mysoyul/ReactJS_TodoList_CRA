@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './TodoItem.css';
-import { removeTodo, toggleTodo } from '../actions';
+//import { removeTodo, toggleTodo } from '../actions';
+import { removeTodo, toggleTodo } from '../reducers/todosSlice'
 class TodoItem extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         return this.props.checked !== nextProps.checked;
