@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import './TodoItem.css';
+import { connect } from 'react-redux';
 
+import './TodoItem.css';
+import { removeTodo, toggleTodo } from '../actions';
 class TodoItem extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         return this.props.checked !== nextProps.checked;
     }
-    
+
     //이벤트 핸들러
-    handleToggle = (id) => {
-        const { todos } = this.state;
-        this.setState({
-            todos: todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo)
-        });
+    handleToggle = (todo) => {
+        todo.checked = !todo.checked
+        this.props.toggleTodo(todo)
     };
 
     handleRemove = (id) => {
-        const { todos } = this.state;
-        this.setState({
-            todos: todos.filter(todo => todo.id !== id)
-        });
+        this.props.removeTodo(id)
     };
 
     render() {
-        const { text, checked, id, onToggle, onRemove } = this.props;
+        const { text, checked, id } = this.props;
+        const { handleToggle, handleRemove } = this;
+
         return (
-            <div className="todo-item" onClick={() => onToggle(id)}>
+            <div className="todo-item" onClick={() => handleToggle({ id,text,checked })}>
                 <div className="remove" onClick={(e) => {
                     e.stopPropagation(); // onToggle 이 실행되지 않도록 함
-                    onRemove(id)
+                    handleRemove(id)
                 }
                 }>&times;</div>
                 <div className={`todo-text ${checked && 'checked'}`}>
@@ -40,4 +39,4 @@ class TodoItem extends Component {
         );
     }
 }
-export default TodoItem
+export default connect(null, { removeTodo, toggleTodo })(TodoItem)
