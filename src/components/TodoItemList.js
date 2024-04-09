@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import TodoItem from './TodoItem';
 //import { fetchAllTodos } from '../actions'
-import { fetchAllTodos } from '../reducers/todosSlice';
+import { fetchAllTodos } from '../reducers/todoSlice';
 
 class TodoItemList extends Component {
     /*
