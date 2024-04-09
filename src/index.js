@@ -12,14 +12,16 @@ import { toDoReducer as reducer } from './reducers';
 
 //const store = createStore(toDoReducer, applyMiddleware(thunk));
 const store = configureStore({
-  reducer: reducer,
+  reducer  //reducer: reducer, 
   //middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk)
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
