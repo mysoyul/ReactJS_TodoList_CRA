@@ -68,3 +68,65 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+* Redux 개념을 이해하기 위한 Counter예제
+```js
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
+//값을 증가시키는 액션생성함수
+const increment = () => ({
+  type : INCREMENT
+});
+//가변적인 값이 들어가야 하면 파라미터를 넣어서 액션을 만든다.
+const increment2 = (diff) => ({
+  type : INCREMENT,
+  diff
+});
+//값을 감소시키는 액션
+const decrement = (diff) => ({
+  type : DECREMENT,
+  diff
+});
+
+//state객체
+const initialState = { number : 0,foo:'bar',baz:'qux' }
+//Reducer 함수
+function counter(state = initialState, action) {
+  switch(action.type) {
+    case INCREMENT:
+      return { 
+        ...state,
+        number:state.number + action.diff
+      };
+    case DECREMENT:
+      return { 
+        ...state,
+        number:state.number - action.diff
+      };
+    default:
+      return state;
+  }
+};
+const { createStore } = Redux;
+
+//store객체생성
+const store = createStore(counter);
+
+store.subscribe(() => {
+    console.log('State 객체 확인')
+    const state = store.getState();
+    console.log(state);
+    const {number,baz, foo} = state;
+    console.log(number);
+    console.log(baz);
+    console.log(foo);
+
+});
+
+
+//dispatch 함수를 호출해서 action을 전달하기 
+store.dispatch(increment2(5));
+store.dispatch(decrement(3));
+
+```
