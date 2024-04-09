@@ -32,12 +32,13 @@ class Form extends Component {
     };
 
     render() {
-        const { todo, myEnter, myChange, myCreate } = this.props;
+        const { todo } = this.state;
+        const { handleEnter, handleChange, handleCreate } = this;
         return (
             <div className="form">
-                <input value={todo} onChange={myChange}
-                    onKeyDown={myEnter} />
-                <div className="create-button" onClick={myCreate}>
+                <input value={todo} onChange={handleChange}
+                    onKeyDown={handleEnter} />
+                <div className="create-button" onClick={handleCreate}>
                     추가
                 </div>
             </div>
